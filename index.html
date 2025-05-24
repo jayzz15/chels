@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chelsea(aki)</title>
+<link rel="stylesheet" href="index.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  audio {
+    display: none;
+  }
+
+  button {
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.6);
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #ff809a;
+  }
+
+  .heart {
+    font-size: 6rem;
+    color: #ff4d6d;
+    user-select: none;
+    margin-bottom: 1rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+    color: #ff809a;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: 300px; /* Set a fixed width for the image */
+    border-radius: 10px; /* Optional: add some border radius */
+  }
+
+  @media (max-width: 600px) {
+    .heart {
+      font-size: 4rem; /* Adjust heart size for smaller screens */
+    }
+
+    button {
+      font-size: 0.9rem; /* Adjust button font size for smaller screens */
+      padding: 0.6rem 1.5rem; /* Adjust button padding for smaller screens */
+    }
+
+    img {
+      width: 80%; /* Make the image responsive on smaller screens */
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="heart" aria-label="Heart">❤️</div>
+  <h1>To My GirlFriend</h1>
+  <h2>This is for you, with all my heart</h2>
+  
+  <p>
+    Every moment with you is a beautiful chapter in my life. Your smile lights up my day, your kindness warms my soul, and your love is my greatest treasure. Thank you for being you — amazing, loving, caring, and simply unforgettable. I hope this little surprise brightens your day as much as you brighten mine.
+  </p>
+
+  <button id="surpriseBtn" aria-label="Show secret love message">Click for a Secret Message</button>
+  <button id="musicToggleBtn" aria-label="Play or Pause music">Play Music</button>
+
+  <footer>
+    &copy; With love, forever and always ❤️
+    <img src="/item/45866634-7379-4265-b5b8-cb9693293050.jpg" alt="aki">
+  </footer>
+
+  <audio id="bgMusic" loop>
+    <source src="/item/chest pain (slowed  reverb).mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+<script>
+  const btn = document.getElementById('surpriseBtn');
+  const musicBtn = document.getElementById('musicToggleBtn');
+  const bgMusic = document.getElementById('bgMusic');
+
+  btn.addEventListener('click', () => {
+    btn.textContent = 'I love you aki ❤️';
+    btn.disabled = true;
+    btn.style.backgroundColor = '#ff809a';
+  });
+
+  // Toggle music playback
+  musicBtn.addEventListener('click', () => {
+    if(bgMusic.paused) {
+      bgMusic.play();
+      musicBtn.textContent = 'Pause Music';
+    } else {
+      bgMusic.pause();
+      musicBtn.textContent = 'Play Music';
+    }
+  });
+
+  // Attempt to play background music after user interaction
+  document.body.addEventListener('click', () => {
+    if(bgMusic.paused) {
+      bgMusic.play().then(() => {
+        musicBtn.textContent = 'Pause Music';
+      }).catch(err => {
+        // Autoplay prevented; user needed to click button
+        console.log('Autoplay prevented:', err);
+      });
+    }
+  }, { once: true });
+</script>
+</body>
+</html>
